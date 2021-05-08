@@ -2,8 +2,6 @@ import { ReactNode } from "react";
 
 export const displays = ["vertical", "horizontal"] as const;
 
-export type Display = typeof displays[number];
-
 export type CalendarItem = {
   content: ReactNode;
 };

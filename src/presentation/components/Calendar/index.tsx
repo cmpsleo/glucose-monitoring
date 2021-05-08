@@ -4,16 +4,16 @@ import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
 import { Button } from "@/presentation/components";
 
 import * as S from "./styles";
-import { CalendarProps, Display, displays } from "./types";
+import { CalendarProps, displays } from "./types";
 
 export function Calendar({
   calendars,
   currentDisplay,
   title = "Calendário",
 }: Calendar.Props) {
-  const [display, setDisplay] = useState<Display>("vertical");
+  const [display, setDisplay] = useState<Calendar.Display>("vertical");
 
-  function handleDisplay(display: Display) {
+  function handleDisplay(display: Calendar.Display) {
     setDisplay(display);
   }
 
@@ -69,5 +69,7 @@ export function Calendar({
 }
 
 export namespace Calendar {
+  export type Display = typeof displays[number];
+
   export type Props = CalendarProps;
 }
