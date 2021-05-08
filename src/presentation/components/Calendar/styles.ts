@@ -8,9 +8,6 @@ type Props = {
   display: Display;
 };
 
-const defaultBorder = (theme: DefaultTheme) =>
-  rgba(theme.colors.pallete.primary, 0.1);
-
 export const Header = styled.div`
   padding: 0 2rem;
   margin-bottom: 3rem;
@@ -110,6 +107,19 @@ export const Item = styled.div`
   `}
 `;
 
+export const Container = styled.div<Props>`
+  ${({ display }) => css`
+    ${Body} {
+      display: grid;
+
+      ${displays[display]()}
+    }
+  `}
+`;
+
+const defaultBorder = (theme: DefaultTheme) =>
+  rgba(theme.colors.pallete.primary, 0.1);
+
 const displays = {
   vertical: () => css`
     ${Date} {
@@ -143,13 +153,3 @@ const displays = {
     }
   `,
 };
-
-export const Container = styled.div<Props>`
-  ${({ display }) => css`
-    ${Body} {
-      display: grid;
-
-      ${displays[display]()}
-    }
-  `}
-`;
