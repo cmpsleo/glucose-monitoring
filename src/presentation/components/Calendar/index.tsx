@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
+
+import { Button } from "@/presentation/components";
 
 import * as S from "./styles";
-import { CalendarProps, Display } from "./types";
+import { CalendarProps, Display, displays } from "./types";
 
-export function Calendar({ calendars, title = "Calendário" }: CalendarProps) {
+export function Calendar({
+  calendars,
+  currentDisplay,
+  title = "Calendário",
+}: Calendar.Props) {
   const [display, setDisplay] = useState<Display>("vertical");
+
+  function handleDisplay(display: Display) {
+    setDisplay(display);
+  }
+
+  useEffect(() => {
+    if (currentDisplay) currentDisplay(display);
+  }, [display, currentDisplay]);
 
   return (
     <S.Container display={display}>
@@ -14,15 +29,23 @@ export function Calendar({ calendars, title = "Calendário" }: CalendarProps) {
         <S.Week>20 Fevereiro - 27 Fevereiro</S.Week>
 
         <S.Actions>
-          <button onClick={() => setDisplay("vertical")}>Vertical</button>
-          <button onClick={() => setDisplay("horizontal")}>Horizontal</button>
+          {displays.map((mode, index) => (
+            <Button
+              key={index}
+              icon={
+                {
+                  horizontal: <ViewGridIcon />,
+                }[mode] || <ViewListIcon />
+              }
+              disabled={display === mode}
+              onClick={() => handleDisplay(mode)}
+            />
+          ))}
         </S.Actions>
       </S.Header>
 
       <S.Body>
         {calendars.map((calendar, index) => {
-          const date = calendar.date;
-
           return (
             <S.Group key={index}>
               <S.Head>
@@ -43,4 +66,8 @@ export function Calendar({ calendars, title = "Calendário" }: CalendarProps) {
       </S.Body>
     </S.Container>
   );
+}
+
+export namespace Calendar {
+  export type Props = CalendarProps;
 }

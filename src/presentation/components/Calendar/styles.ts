@@ -42,6 +42,12 @@ export const Actions = styled.div`
   ${media.lessThan("large")`
     margin-top: 3rem;
   `}
+
+  > button {
+    &:not(:last-of-type) {
+      margin-right: 0.8rem;
+    }
+  }
 `;
 
 export const Body = styled.div`

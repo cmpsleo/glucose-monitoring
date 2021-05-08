@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 
-export type Display = "vertical" | "horizontal";
+export const displays = ["vertical", "horizontal"] as const;
+
+export type Display = typeof displays[number];
 
 export type CalendarItem = {
   content: ReactNode;
@@ -14,4 +16,5 @@ export type Calendar = {
 export type CalendarProps = {
   calendars: Calendar[];
   title?: string;
+  currentDisplay?: (display: Display) => void;
 };
