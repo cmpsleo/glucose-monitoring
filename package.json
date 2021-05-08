@@ -6,8 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src --max-warnings=0",
+    "storybook:build": "build-storybook -s ./public",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "storybook:build": "build-storybook -s ./public"
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "husky": {
     "hooks": {
