@@ -81,9 +81,7 @@ const displays = {
 
   short: css`
     ${Icon} {
-      position: absolute;
-      bottom: 2rem;
-      right: 2rem;
+      margin-top: 0.8rem;
     }
 
     ${Item} {

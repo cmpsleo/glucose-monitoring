@@ -1,5 +1,5 @@
 import { Measurement } from "@/domain/models";
-import { Conditional } from "@/presentation/components";
+import { Conditional, Tooltip } from "@/presentation/components";
 
 import * as S from "./styles";
 
@@ -27,7 +27,9 @@ export function Card({
       </S.Item>
 
       <S.Item>
-        <S.Icon src="/icons/cookie.svg" />
+        <Tooltip content="Context" placement="right">
+          <S.Icon src="/icons/cookie.svg" />
+        </Tooltip>
       </S.Item>
     </S.Container>
   );
