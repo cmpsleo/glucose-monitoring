@@ -19,38 +19,6 @@ export const Icon = styled.span`
 
 export const Content = styled.span``;
 
-const kinds = {
-  primary: (theme: DefaultTheme) => css`
-    background-color: ${theme.colors.pallete.primary};
-
-    &:hover {
-      background-color: ${darken(0.05, theme.colors.pallete.primary)};
-    }
-  `,
-};
-
-const sizes = {
-  medium: (theme: DefaultTheme) => css`
-    padding: 1rem 2rem;
-
-    font-size: ${theme.font.size.medium};
-  `,
-};
-
-const modifiers = {
-  withIcon: css`
-    ${Content} {
-      margin-left: 0.8rem;
-    }
-  `,
-
-  disabled: css`
-    opacity: 0.6;
-
-    cursor: not-allowed;
-  `,
-};
-
 export const Container = styled.button<Props>`
   ${({ theme, kind, size, hasIcon, disabled }) => css`
     all: unset;
@@ -76,3 +44,47 @@ export const Container = styled.button<Props>`
     ${disabled && modifiers.disabled}
   `}
 `;
+
+function makeKind(color: string) {
+  return css`
+    background-color: ${color};
+
+    &:hover {
+      background-color: ${darken(0.05, color)};
+    }
+  `;
+}
+
+const kinds = {
+  primary: (theme: DefaultTheme) => makeKind(theme.colors.pallete.primary),
+
+  secondary: (theme: DefaultTheme) => makeKind(theme.colors.pallete.secondary),
+};
+
+const sizes = {
+  small: (theme: DefaultTheme) => css`
+    padding: 0.8rem 1.5rem;
+
+    font-size: ${theme.font.size.small};
+  `,
+
+  medium: (theme: DefaultTheme) => css`
+    padding: 1rem 2rem;
+
+    font-size: ${theme.font.size.medium};
+  `,
+};
+
+const modifiers = {
+  withIcon: css`
+    ${Content} {
+      margin-left: 0.8rem;
+    }
+  `,
+
+  disabled: css`
+    opacity: 0.6;
+
+    cursor: not-allowed;
+  `,
+};
