@@ -6,7 +6,10 @@ export const theme = {
       base: "62.5%",
       small: "1.2rem",
       medium: "1.6rem",
-      large: "2.2rem",
+      large: "2rem",
+    },
+    weight: {
+      bold: 700,
     },
   },
   layers: {
@@ -24,6 +27,7 @@ export const theme = {
       danger: "#e05d69",
     },
     text: {
+      low: "#3f486b",
       default: "#20253a",
     },
   },
