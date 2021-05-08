@@ -1,24 +1,25 @@
 import { Calendar } from "@/presentation/components";
 
 import { Card } from "./components";
+import * as S from "./styles";
 
 export function History() {
   return (
-    <div>
-      <h1>Hello from History</h1>
-      <br />
-      <Calendar
-        calendars={[
-          {
-            date: new Date(),
-            items: [
-              {
-                content: <Card />,
-              },
-            ],
-          },
-        ]}
-      />
-    </div>
+    <S.Container>
+      <S.Content>
+        <Calendar
+          calendars={[
+            {
+              date: new Date(),
+              items: [
+                {
+                  content: <Card />,
+                },
+              ],
+            },
+          ]}
+        />
+      </S.Content>
+    </S.Container>
   );
 }
