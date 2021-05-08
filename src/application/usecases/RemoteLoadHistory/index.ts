@@ -1,24 +1,42 @@
+import { RemoteMeasurement } from "@/application/models";
 import { LoadHistory } from "@/domain/usecases";
 import { HttpClient } from "@/application/protocols/http";
 
 export class RemoteLoadHistory implements LoadHistory {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<LoadHistory.Model>
+    private readonly httpClient: HttpClient<RemoteMeasurement[]>
   ) {}
 
   async execute(): Promise<LoadHistory.Model> {
-    let response;
+    const response = await this.httpClient.execute({
+      url: this.url,
+      method: "get",
+    });
 
-    try {
-      response = await this.httpClient.execute({
-        url: this.url,
-        method: "get",
-      });
-    } catch (error) {
-      response = error.response;
-    }
+    return this.parsePayload(response.body);
+  }
 
-    return response;
+  parsePayload(data: RemoteMeasurement[]): LoadHistory.Model {
+    const transform: {
+      [key: string]: RemoteMeasurement[];
+    } = data.reduce((prev, current) => {
+      const [measuredAt] = new Date(current.measuredAt)
+        .toISOString()
+        .split("T");
+      return {
+        ...prev,
+        [measuredAt]: [...(prev?.[measuredAt] || []), current],
+      };
+    }, {});
+
+    const sort = Object.entries(transform).sort(([a], [b]) =>
+      new Date(a) > new Date(b) ? 1 : -1
+    );
+
+    return sort.map(([measuredAt, items]) => ({
+      measuredAt,
+      items,
+    }));
   }
 }
