@@ -5,6 +5,7 @@ export const theme = {
     size: {
       base: "62.5%",
       medium: "1.6rem",
+      large: "2.2rem",
     },
   },
   layers: {
@@ -15,8 +16,11 @@ export const theme = {
       background: "#fbfcfe",
     },
     pallete: {
-      primary: "#f00",
-      secondary: "#ff0",
+      primary: "#009afa",
+      secondary: "#faaa0d",
+      success: "#39e586",
+      warning: "#f3a75e",
+      danger: "#e05d69",
     },
   },
 } as const;
