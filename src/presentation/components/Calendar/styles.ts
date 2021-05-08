@@ -1,4 +1,6 @@
-import styled, { css } from "styled-components";
+import styled, { css, DefaultTheme } from "styled-components";
+import { rgba } from "polished";
+import media from "styled-media-query";
 
 import { Display } from "./types";
 
@@ -6,57 +8,124 @@ type Props = {
   display: Display;
 };
 
+const defaultBorder = (theme: DefaultTheme) =>
+  rgba(theme.colors.pallete.primary, 0.1);
+
 export const Header = styled.div`
+  padding: 0 2rem;
   margin-bottom: 3rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${media.greaterThan("large")`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `}
 `;
 
-export const Title = styled.h3``;
+export const Title = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.pallete.primary};
+  `}
+`;
 
-export const Week = styled.div``;
+export const Week = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.pallete.primary};
 
-export const Actions = styled.div``;
+    ${media.lessThan("large")`
+      margin-top: 1rem;
+    `}
+  `}
+`;
 
-export const Body = styled.div``;
+export const Actions = styled.div`
+  ${media.lessThan("large")`
+    margin-top: 3rem;
+  `}
+`;
+
+export const Body = styled.div`
+  padding-bottom: 3rem;
+
+  border-radius: 2rem;
+  background-color: #fff;
+
+  ${media.lessThan("large")`
+    overflow-x: auto;
+  `}
+`;
 
 export const Group = styled.div``;
 
 export const Head = styled.div`
+  padding: 3rem;
+  padding-bottom: 0;
   margin-bottom: 2rem;
 `;
 
 export const Date = styled.p`
-  display: flex;
+  ${({ theme }) => css`
+    display: flex;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    color: ${theme.colors.pallete.primary};
+
+    > span {
+      &:first-child {
+        font-size: ${theme.font.size.large};
+      }
+    }
+  `}
+`;
+
+export const List = styled.div`
+  ${({ theme }) => css`
+    padding: 2rem 0;
+
+    border-top: 1px solid ${defaultBorder(theme)};
+    border-bottom: 1px solid ${defaultBorder(theme)};
+  `}
 `;
 
 export const Item = styled.div`
-  width: 100%;
-  margin-bottom: 2rem;
+  ${({ theme }) => css`
+    width: 100%;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+
+      border-bottom: 1px solid ${defaultBorder(theme)};
+    }
+  `}
 `;
 
 const displays = {
-  vertical: css`
-    ${Group} {
-      &:not(:last-of-type) {
-        margin-bottom: 4rem;
-      }
-    }
-
+  vertical: () => css`
     ${Date} {
-      > span:first-of-type {
-        &:after {
-          padding: 0 0.5rem;
+      align-items: center;
 
-          content: "/";
+      > span {
+        &:first-of-type {
+          &:after {
+            padding: 0 0.5rem;
+
+            content: "/";
+          }
+        }
+
+        &:last-of-type {
+          margin-top: 3px;
         }
       }
     }
   `,
 
-  horizontal: css`
+  horizontal: () => css`
     grid-template-columns: repeat(7, 1fr);
 
     ${Head} {
@@ -74,7 +143,7 @@ export const Container = styled.div<Props>`
     ${Body} {
       display: grid;
 
-      ${displays[display]}
+      ${displays[display]()}
     }
   `}
 `;

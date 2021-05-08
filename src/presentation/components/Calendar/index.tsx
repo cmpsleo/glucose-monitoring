@@ -4,7 +4,7 @@ import * as S from "./styles";
 import { CalendarProps, Display } from "./types";
 
 export function Calendar({ calendars, title = "Calendário" }: CalendarProps) {
-  const [display, setDisplay] = useState<Display>("horizontal");
+  const [display, setDisplay] = useState<Display>("vertical");
 
   return (
     <S.Container display={display}>
@@ -32,9 +32,11 @@ export function Calendar({ calendars, title = "Calendário" }: CalendarProps) {
                 </S.Date>
               </S.Head>
 
-              {calendar.items.map((item, index) => (
-                <S.Item key={index}>{item.content}</S.Item>
-              ))}
+              <S.List>
+                {calendar.items.map((item, index) => (
+                  <S.Item key={index}>{item.content}</S.Item>
+                ))}
+              </S.List>
             </S.Group>
           );
         })}
