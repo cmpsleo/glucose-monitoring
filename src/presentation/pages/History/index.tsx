@@ -26,7 +26,7 @@ export function History() {
     const when = {
       horizontal: "short",
       vertical: "expanded",
-    };
+    } as const;
 
     setDisplay(when[display]);
   }

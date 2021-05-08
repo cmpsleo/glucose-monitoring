@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
 
 import { Button } from "@/presentation/components";
 
 import * as S from "./styles";
-import { CalendarProps, displays } from "./types";
+
+const displays = ["vertical", "horizontal"] as const;
 
 export function Calendar({
   calendars,
@@ -71,5 +72,18 @@ export function Calendar({
 export namespace Calendar {
   export type Display = typeof displays[number];
 
-  export type Props = CalendarProps;
+  export type CalendarItem = {
+    content: ReactNode;
+  };
+
+  export type Calendar = {
+    date: Date;
+    items: CalendarItem[];
+  };
+
+  export type Props = {
+    calendars: Calendar[];
+    title?: string;
+    currentDisplay?: (display: Display) => void;
+  };
 }

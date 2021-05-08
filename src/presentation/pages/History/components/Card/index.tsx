@@ -4,7 +4,7 @@ import { Conditional, Tooltip } from "@/presentation/components";
 import * as S from "./styles";
 
 export function Card({
-  condition = "normal",
+  condition = "Normal",
   display = "expanded",
 }: Card.Props) {
   return (
@@ -38,7 +38,7 @@ export function Card({
 export namespace Card {
   export type Display = "short" | "expanded";
 
-  export type Props = Measurement & {
+  export type Props = Measurement.Item & {
     display: Display;
   };
 }

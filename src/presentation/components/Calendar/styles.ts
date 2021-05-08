@@ -2,10 +2,10 @@ import styled, { css, DefaultTheme } from "styled-components";
 import { rgba } from "polished";
 import media from "styled-media-query";
 
-import { Display } from "./types";
+import { Calendar } from ".";
 
 type Props = {
-  display: Display;
+  display: Calendar.Display;
 };
 
 export const Header = styled.div`

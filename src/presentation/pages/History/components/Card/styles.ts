@@ -58,12 +58,12 @@ function makeConditions(color: string) {
 }
 
 const conditions = {
-  normal: (theme: DefaultTheme) => makeConditions(theme.colors.pallete.success),
+  Normal: (theme: DefaultTheme) => makeConditions(theme.colors.pallete.success),
 
-  hiperglicemia: (theme: DefaultTheme) =>
+  Hiperglicemia: (theme: DefaultTheme) =>
     makeConditions(theme.colors.pallete.warning),
 
-  hipoglicemia: (theme: DefaultTheme) =>
+  Hipoglicemia: (theme: DefaultTheme) =>
     makeConditions(theme.colors.pallete.danger),
 };
 
