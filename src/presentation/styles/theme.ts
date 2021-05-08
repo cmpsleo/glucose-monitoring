@@ -4,6 +4,7 @@ export const theme = {
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     size: {
       base: "62.5%",
+      small: "1.2rem",
       medium: "1.6rem",
       large: "2.2rem",
     },
@@ -13,7 +14,7 @@ export const theme = {
   },
   colors: {
     page: {
-      background: "#fbfcfe",
+      background: "#f8f9fd",
     },
     pallete: {
       primary: "#009afa",
@@ -21,6 +22,9 @@ export const theme = {
       success: "#39e586",
       warning: "#f3a75e",
       danger: "#e05d69",
+    },
+    text: {
+      default: "#20253a",
     },
   },
 } as const;
