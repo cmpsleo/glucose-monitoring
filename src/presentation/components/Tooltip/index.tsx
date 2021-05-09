@@ -1,9 +1,9 @@
-import { ReactNode, memo } from "react";
-import { Placement } from "tippy.js";
+import { memo } from "react";
 
 import * as S from "./styles";
+import { TooltipProps } from "./types";
 
-function Tooltip({ placement = "top", content, children }: Tooltip.Props) {
+function Tooltip({ placement = "top", content, children }: TooltipProps) {
   return (
     <S.Container
       placement={placement}
@@ -18,14 +18,6 @@ function Tooltip({ placement = "top", content, children }: Tooltip.Props) {
       <S.Children>{children}</S.Children>
     </S.Container>
   );
-}
-
-export namespace Tooltip {
-  export type Props = {
-    content?: any;
-    children: ReactNode;
-    placement?: Placement;
-  };
 }
 
 export default memo(Tooltip);
