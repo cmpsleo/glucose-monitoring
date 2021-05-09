@@ -25,16 +25,6 @@ export const Title = styled.h1`
   `}
 `;
 
-export const Week = styled.div`
-  ${({ theme }) => css`
-    color: ${theme.colors.pallete.primary};
-
-    ${media.lessThan("large")`
-      margin-top: 1rem;
-    `}
-  `}
-`;
-
 export const Actions = styled.div`
   ${media.lessThan("large")`
     margin-top: 3rem;
@@ -42,7 +32,7 @@ export const Actions = styled.div`
 
   > button {
     &:not(:last-of-type) {
-      margin-right: 0.8rem;
+      margin-right: 0.4rem;
     }
   }
 `;

@@ -5,14 +5,14 @@ import { Button } from "@/presentation/components";
 
 import * as S from "./styles";
 
-const displays = ["vertical", "horizontal"] as const;
+const displays = ["horizontal", "vertical"] as const;
 
 export function Calendar({
   calendars,
   currentDisplay,
   title = "Calendário",
 }: Calendar.Props) {
-  const [display, setDisplay] = useState<Calendar.Display>("vertical");
+  const [display, setDisplay] = useState<Calendar.Display>("horizontal");
 
   function handleDisplay(display: Calendar.Display) {
     setDisplay(display);
@@ -26,8 +26,6 @@ export function Calendar({
     <S.Container display={display}>
       <S.Header>
         <S.Title>{title}</S.Title>
-
-        <S.Week>20 Fevereiro - 27 Fevereiro</S.Week>
 
         <S.Actions>
           {displays.map((mode, index) => (
@@ -52,7 +50,7 @@ export function Calendar({
               <S.Head>
                 <S.Date>
                   <span>20</span>
-                  <span>janeiro</span>
+                  <span>Fevereiro</span>
                 </S.Date>
               </S.Head>
 
@@ -77,7 +75,7 @@ export namespace Calendar {
   };
 
   export type Calendar = {
-    date: Date;
+    date: Date | string;
     items: CalendarItem[];
   };
 
