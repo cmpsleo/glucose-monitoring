@@ -8,7 +8,7 @@ export class RemoteLoadHistory implements LoadHistory {
     private readonly httpClient: HttpClient<RemoteMeasurement[]>
   ) {}
 
-  async execute(): Promise<LoadHistory.Model> {
+  async execute(): Promise<RemoteLoadHistory.Model> {
     const response = await this.httpClient.execute({
       url: this.url,
       method: "get",
@@ -17,7 +17,9 @@ export class RemoteLoadHistory implements LoadHistory {
     return this.parsePayload(response.body);
   }
 
-  parsePayload(data: RemoteMeasurement[]): LoadHistory.Model {
+  private parsePayload(data: RemoteMeasurement[]): RemoteLoadHistory.Model {
+    if (!data) return;
+
     const transform: {
       [key: string]: RemoteMeasurement[];
     } = data.reduce((prev, current) => {
@@ -39,4 +41,8 @@ export class RemoteLoadHistory implements LoadHistory {
       items,
     }));
   }
+}
+
+export namespace RemoteLoadHistory {
+  export type Model = LoadHistory.Model;
 }
