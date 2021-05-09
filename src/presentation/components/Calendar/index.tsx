@@ -1,7 +1,7 @@
 import { ReactNode, useState, useEffect } from "react";
 import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
 
-import { Button } from "@/presentation/components";
+import { Conditional, Button, Loader } from "@/presentation/components";
 import { formatDate } from "@/presentation/utils";
 
 import * as S from "./styles";
@@ -12,6 +12,8 @@ export function Calendar({
   calendars,
   currentDisplay,
   title = "Calendário",
+  isLoading = false,
+  loaderText = "Aguarde, carregando...",
 }: Calendar.Props) {
   const [display, setDisplay] = useState<Calendar.Display>("horizontal");
 
@@ -45,26 +47,36 @@ export function Calendar({
       </S.Header>
 
       <S.Body>
-        {calendars.map((calendar, index) => {
-          const date = formatDate(calendar.date);
+        <Conditional when={isLoading}>
+          <S.Loader>
+            <Loader /> {loaderText}
+          </S.Loader>
+        </Conditional>
 
-          return (
-            <S.Group key={index}>
-              <S.Head>
-                <S.Date>
-                  <span>{date.date()}</span>
-                  <span>{date.format("MMMM")}</span>
-                </S.Date>
-              </S.Head>
+        <Conditional when={!isLoading}>
+          <S.Calendar>
+            {calendars.map((calendar, index) => {
+              const date = formatDate(calendar.date);
 
-              <S.List>
-                {calendar.items.map((item, index) => (
-                  <S.Item key={index}>{item.content}</S.Item>
-                ))}
-              </S.List>
-            </S.Group>
-          );
-        })}
+              return (
+                <S.Group key={index}>
+                  <S.Head>
+                    <S.Date>
+                      <span>{date.date()}</span>
+                      <span>{date.format("MMMM")}</span>
+                    </S.Date>
+                  </S.Head>
+
+                  <S.List>
+                    {calendar.items.map((item, index) => (
+                      <S.Item key={index}>{item.content}</S.Item>
+                    ))}
+                  </S.List>
+                </S.Group>
+              );
+            })}
+          </S.Calendar>
+        </Conditional>
       </S.Body>
     </S.Container>
   );
@@ -83,8 +95,10 @@ export namespace Calendar {
   };
 
   export type Props = {
-    calendars: Calendar[];
     title?: string;
+    isLoading?: boolean;
+    loaderText?: string;
+    calendars: Calendar[];
     currentDisplay?: (display: Display) => void;
   };
 }

@@ -2,10 +2,10 @@ import styled, { css, DefaultTheme } from "styled-components";
 import { rgba } from "polished";
 import media from "styled-media-query";
 
-import { Calendar } from ".";
+import { Calendar as Component } from ".";
 
 type Props = {
-  display: Calendar.Display;
+  display: Component.Display;
 };
 
 export const Header = styled.div`
@@ -42,7 +42,34 @@ export const Body = styled.div`
 
   border-radius: 2rem;
   background-color: #fff;
+`;
 
+export const Loader = styled.div`
+  ${({ theme }) => css`
+    width: 100%;
+    padding: 3rem 3rem 0;
+
+    display: flex;
+    align-items: center;
+
+    color: ${theme.colors.text.default};
+
+    ${media.lessThan("large")`
+      font-size: ${theme.font.size.small};
+    `}
+
+    > img {
+      height: 5rem;
+      margin-right: 2rem;
+
+      ${media.lessThan("large")`
+        height: 3rem;
+      `}
+    }
+  `}
+`;
+
+export const Calendar = styled.div`
   ${media.lessThan("large")`
     overflow-x: auto;
   `}
@@ -99,7 +126,7 @@ export const Item = styled.div`
 
 export const Container = styled.div<Props>`
   ${({ display }) => css`
-    ${Body} {
+    ${Calendar} {
       display: grid;
 
       ${displays[display]()}
