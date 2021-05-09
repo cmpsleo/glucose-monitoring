@@ -1,26 +1,15 @@
-import { useMemo, useState } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 
 import { Calendar } from "@/presentation/components";
+import { LoadHistory } from "@/domain/usecases";
 
-import { Card } from "./components";
+import Card, { CardProps } from "./components/Card";
 import * as S from "./styles";
 
-export function History() {
-  const [display, setDisplay] = useState<Card.Display>("expanded");
-
-  const makeCalendar = useMemo(
-    () => [
-      {
-        date: new Date(),
-        items: [
-          {
-            content: <Card display={display} />,
-          },
-        ],
-      },
-    ],
-    [display]
-  );
+export function History({ loadHistory }: History.Props) {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [history, setHistory] = useState<LoadHistory.Model>([]);
+  const [display, setDisplay] = useState<CardProps["display"]>("expanded");
 
   function handleDisplay(display: Calendar.Display) {
     const when = {
@@ -31,6 +20,33 @@ export function History() {
     setDisplay(when[display]);
   }
 
+  const fetchHistory = useCallback(async () => {
+    try {
+      setLoading(true);
+      const history = await loadHistory.execute();
+      setHistory(history);
+    } finally {
+      setLoading(false);
+    }
+  }, [loadHistory]);
+
+  const makeCalendar = useMemo<Calendar.Calendar[]>(
+    () =>
+      history.map((history) => ({
+        date: history.measuredAt,
+        items: history.items.map((item) => ({
+          content: <Card display={display} {...item} />,
+        })),
+      })),
+    [history, display]
+  );
+
+  useEffect(() => {
+    fetchHistory();
+  }, [fetchHistory]);
+
+  if (loading) return <h1>Carregando...</h1>;
+
   return (
     <S.Container>
       <S.Content>
@@ -38,4 +54,10 @@ export function History() {
       </S.Content>
     </S.Container>
   );
+}
+
+export namespace History {
+  export type Props = {
+    loadHistory: LoadHistory;
+  };
 }
