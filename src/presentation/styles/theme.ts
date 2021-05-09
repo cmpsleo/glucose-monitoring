@@ -14,6 +14,8 @@ export const theme = {
   },
   layers: {
     base: 10,
+    backdrop: 50,
+    modal: 60,
   },
   colors: {
     page: {
