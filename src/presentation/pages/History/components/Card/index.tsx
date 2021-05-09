@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { Conditional, Tooltip } from "@/presentation/components";
+import { Conditional } from "@/presentation/components";
 import { MealContexts } from "@/domain/models";
 
 import * as S from "./styles";
@@ -31,15 +31,13 @@ function Card({
       </S.Item>
 
       <S.Item>
-        <Tooltip content={MealContexts[mealContext]} placement="bottom">
-          <S.Icon
-            src={
-              {
-                Before: "/icons/cookie-eated.svg",
-              }[mealContext] || "/icons/cookie.svg"
-            }
-          />
-        </Tooltip>
+        <S.Icon
+          src={
+            {
+              Before: "/icons/cookie-eated.svg",
+            }[mealContext] || "/icons/cookie.svg"
+          }
+        />
       </S.Item>
     </S.Container>
   );
