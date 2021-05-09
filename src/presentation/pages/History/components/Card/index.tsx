@@ -1,17 +1,21 @@
-import { Measurement } from "@/domain/models";
+import { memo } from "react";
+
 import { Conditional, Tooltip } from "@/presentation/components";
+import { MealContexts } from "@/domain/models";
 
 import * as S from "./styles";
+import { CardProps } from "./types";
 
-export function Card({
-  condition = "Normal",
+function Card({
+  mealContext = "Before",
   display = "expanded",
-}: Card.Props) {
+  ...props
+}: CardProps) {
   return (
-    <S.Container condition={condition} display={display}>
+    <S.Container mealContext={mealContext} display={display} {...props}>
       <S.Item>
         <S.Heading>
-          <span>103</span> mg/dL
+          <span>{props.concentration}</span> {props.concentrationUnit}
         </S.Heading>
       </S.Item>
 
@@ -20,25 +24,27 @@ export function Card({
       </Conditional>
 
       <S.Item>
-        03:37
+        06:30
         <Conditional when={display === "expanded"}>
-          <span>(10/02)</span>
+          <span>(28/03)</span>
         </Conditional>
       </S.Item>
 
       <S.Item>
-        <Tooltip content="Context" placement="right">
-          <S.Icon src="/icons/cookie.svg" />
+        <Tooltip content={MealContexts[mealContext]} placement="bottom">
+          <S.Icon
+            src={
+              {
+                Before: "/icons/cookie-eated.svg",
+              }[mealContext] || "/icons/cookie.svg"
+            }
+          />
         </Tooltip>
       </S.Item>
     </S.Container>
   );
 }
 
-export namespace Card {
-  export type Display = "short" | "expanded";
+export * from "./types";
 
-  export type Props = Measurement.Item & {
-    display: Display;
-  };
-}
+export default memo(Card);
