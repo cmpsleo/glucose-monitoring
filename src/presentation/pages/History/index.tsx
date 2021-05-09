@@ -71,12 +71,15 @@ export function History({ loadHistory }: History.Props) {
     fetchHistory();
   }, [fetchHistory]);
 
-  if (loading) return <h1>Carregando...</h1>;
-
   return (
     <S.Container>
       <S.Content>
-        <Calendar calendars={makeCalendar} currentDisplay={handleDisplay} />
+        <Calendar
+          isLoading={loading}
+          calendars={makeCalendar}
+          currentDisplay={handleDisplay}
+          loaderText="Aguarde, estamos buscando o histórico de medição."
+        />
       </S.Content>
 
       <Conditional when={details.isVisible}>
