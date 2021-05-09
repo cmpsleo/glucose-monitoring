@@ -31,5 +31,6 @@ export namespace Measurement {
       name: string;
       manufacturer: string;
     };
+    notes: string;
   };
 }
