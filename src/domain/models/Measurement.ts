@@ -3,9 +3,23 @@ export interface Measurement {
   items: Measurement.Item[];
 }
 
+export enum Conditions {
+  Normal = "Normal",
+  Hyperglycemia = "Hiperglicemia",
+  Hypoglycemia = "Hipoglicemia",
+}
+
+export enum MealContexts {
+  Fasting = "Em jejum",
+  Before = "Antes da refeição",
+  After = "Depois da refeição",
+}
+
 export namespace Measurement {
-  export type Condition = "Normal" | "Hiperglicemia" | "Hipoglicemia";
+  export type Condition = "Normal" | "Hyperglycemia" | "Hypoglycemia";
+
   export type Contexts = "Fasting" | "Before" | "After";
+
   export type Item = {
     concentration: number;
     concentrationUnit: string;
