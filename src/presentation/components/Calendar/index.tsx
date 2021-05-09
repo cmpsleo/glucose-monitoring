@@ -2,6 +2,7 @@ import { ReactNode, useState, useEffect } from "react";
 import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
 
 import { Button } from "@/presentation/components";
+import { formatDate } from "@/presentation/utils";
 
 import * as S from "./styles";
 
@@ -45,12 +46,14 @@ export function Calendar({
 
       <S.Body>
         {calendars.map((calendar, index) => {
+          const date = formatDate(calendar.date);
+
           return (
             <S.Group key={index}>
               <S.Head>
                 <S.Date>
-                  <span>20</span>
-                  <span>Fevereiro</span>
+                  <span>{date.date()}</span>
+                  <span>{date.format("MMMM")}</span>
                 </S.Date>
               </S.Head>
 

@@ -3,6 +3,7 @@ import { XIcon } from "@heroicons/react/solid";
 
 import { MealContexts } from "@/domain/models";
 import { Modal } from "@/presentation/components";
+import { formatDate } from "@/presentation/utils";
 import { useLockBodyScroll, useOutsideClick } from "@/presentation/hooks";
 
 import * as S from "./styles";
@@ -24,7 +25,11 @@ function Details({ onClose, measurement }: DetailsProps) {
       <Content size="small">
         <S.Content ref={contentRef}>
           <S.Head>
-            <S.Title>20 de Fevereiro de 2021</S.Title>
+            <S.Title>
+              {formatDate(measurement.measuredAt).format(
+                "DD [de] MMMM [de] YYYY [às] HH:mm"
+              )}
+            </S.Title>
 
             <S.Close onClick={onClose}>
               <XIcon />

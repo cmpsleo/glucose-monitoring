@@ -1,7 +1,7 @@
-import { memo } from "react";
+import { useRef, memo } from "react";
 
 import { Conditional } from "@/presentation/components";
-import { MealContexts } from "@/domain/models";
+import { formatDate } from "@/presentation/utils";
 
 import * as S from "./styles";
 import { CardProps } from "./types";
@@ -11,6 +11,8 @@ function Card({
   display = "expanded",
   ...props
 }: CardProps) {
+  const date = useRef(formatDate(props.measuredAt));
+
   return (
     <S.Container mealContext={mealContext} display={display} {...props}>
       <S.Item>
@@ -20,13 +22,13 @@ function Card({
       </S.Item>
 
       <Conditional when={display === "expanded"}>
-        <S.Item>há 3 meses</S.Item>
+        <S.Item>{date.current.fromNow()}</S.Item>
       </Conditional>
 
       <S.Item>
-        06:30
+        {date.current.format("HH:mm")}
         <Conditional when={display === "expanded"}>
-          <span>(28/03)</span>
+          <span>({date.current.format("DD/MM")})</span>
         </Conditional>
       </S.Item>
 
