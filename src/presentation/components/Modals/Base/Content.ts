@@ -41,6 +41,22 @@ export const Content = styled.div<ModalsBaseProps>`
     background-color: #fff;
     box-shadow: 0 0 20px ${rgba("#000", 0.3)};
 
+    animation: fade-in-top 250ms;
+
+    @keyframes fade-in-top {
+      from {
+        transform: translateY(30px);
+
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+
+        opacity: 1;
+      }
+    }
+
     ${modifiers[size]}
   `}
 `;
