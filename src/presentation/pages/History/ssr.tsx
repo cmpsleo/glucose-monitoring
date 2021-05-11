@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo } from "react";
 
 import { Measurement } from "@/domain/models";
 import { LoadHistory } from "@/domain/usecases";
