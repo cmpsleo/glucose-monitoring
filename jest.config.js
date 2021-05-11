@@ -6,6 +6,7 @@ module.exports = {
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/presentation/**",
+    "!src/infra/http/ReactQuery/*.ts",
     "!src/**/stories.tsx",
     "!src/pages/**/*.tsx",
     "!src/main/**/*.ts",
