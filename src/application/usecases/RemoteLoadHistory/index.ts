@@ -32,11 +32,7 @@ export class RemoteLoadHistory implements LoadHistory {
       };
     }, {});
 
-    const sort = Object.entries(transform).sort(([a], [b]) =>
-      new Date(a) > new Date(b) ? 1 : -1
-    );
-
-    return sort.map(([measuredAt, items]) => ({
+    return Object.entries(transform).map(([measuredAt, items]) => ({
       measuredAt,
       items,
     }));

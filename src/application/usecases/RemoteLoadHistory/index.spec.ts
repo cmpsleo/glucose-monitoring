@@ -15,7 +15,7 @@ type SutTypes = {
   httpClientSpy: HttpClientSpy<RemoteMeasurement[]>;
 };
 
-const makeSut = (url = faker.internet.url()): SutTypes => {
+function makeSut(url = faker.internet.url()): SutTypes {
   const httpClientSpy = new HttpClientSpy<RemoteMeasurement[]>();
   const sut = new RemoteLoadHistory(url, httpClientSpy);
 
@@ -23,10 +23,10 @@ const makeSut = (url = faker.internet.url()): SutTypes => {
     sut,
     httpClientSpy,
   };
-};
+}
 
 describe("RemoteLoadHistory", () => {
-  it("Should call HttpClient with correct params", async () => {
+  it("Should call HttpClient with GET verb and correct URL", async () => {
     const url = faker.internet.url();
 
     const { sut, httpClientSpy } = makeSut(url);
@@ -37,7 +37,7 @@ describe("RemoteLoadHistory", () => {
     expect(httpClientSpy.method).toBe("get");
   });
 
-  it("Should return response parsed as LoadHistory Model", async () => {
+  it("Should return response parsed as LoadHistory.Model", async () => {
     const { sut, httpClientSpy } = makeSut();
 
     const payload = mockRemoteMeasurement();
