@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo } from "react";
+import { useQuery } from "react-query";
 
 import { Measurement } from "@/domain/models";
 import { LoadHistory } from "@/domain/usecases";
@@ -14,9 +15,11 @@ const INITIAL_DETAILS = {
 };
 
 export function History({ loadHistory }: History.Props) {
-  const [loading, setLoading] = useState<boolean>(true);
+  const { data, isLoading } = useQuery("history", () => loadHistory.execute(), {
+    initialData: [],
+  });
+
   const [details, setDetails] = useState(INITIAL_DETAILS);
-  const [history, setHistory] = useState<LoadHistory.Model>([]);
   const [display, setDisplay] = useState<CardProps["display"]>("expanded");
 
   function handleDisplay(display: Calendar.Display) {
@@ -40,19 +43,9 @@ export function History({ loadHistory }: History.Props) {
     });
   }
 
-  const fetchHistory = useCallback(async () => {
-    try {
-      setLoading(true);
-      const history = await loadHistory.execute();
-      setHistory(history);
-    } finally {
-      setLoading(false);
-    }
-  }, [loadHistory]);
-
   const makeCalendar = useMemo<Calendar.Calendar[]>(
     () =>
-      history.map((history) => ({
+      data.map((history) => ({
         date: history.measuredAt,
         items: history.items.map((item) => ({
           content: (
@@ -64,18 +57,14 @@ export function History({ loadHistory }: History.Props) {
           ),
         })),
       })),
-    [history, display]
+    [data, display]
   );
-
-  useEffect(() => {
-    fetchHistory();
-  }, [fetchHistory]);
 
   return (
     <S.Container>
       <S.Content>
         <Calendar
-          isLoading={loading}
+          isLoading={isLoading}
           calendars={makeCalendar}
           currentDisplay={handleDisplay}
           loaderText="Aguarde, estamos buscando o histórico de medição."
