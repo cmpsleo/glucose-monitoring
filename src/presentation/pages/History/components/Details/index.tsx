@@ -1,9 +1,9 @@
 import { useRef, memo } from "react";
 import { XIcon } from "@heroicons/react/solid";
 
+import { formatDate } from "@/infra/date";
 import { MealContexts } from "@/domain/models";
 import { Modal } from "@/presentation/components";
-import { formatDate } from "@/presentation/utils";
 import { useLockBodyScroll, useOutsideClick } from "@/presentation/hooks";
 
 import * as S from "./styles";

@@ -1,7 +1,7 @@
 import { useRef, memo } from "react";
 
+import { formatDate } from "@/infra/date";
 import { Conditional } from "@/presentation/components";
-import { formatDate } from "@/presentation/utils";
 
 import * as S from "./styles";
 import { CardProps } from "./types";

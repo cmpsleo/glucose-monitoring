@@ -1,8 +1,8 @@
 import { ReactNode, useState, useEffect } from "react";
 import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
 
+import { formatDate } from "@/infra/date";
 import { Conditional, Button, Loader } from "@/presentation/components";
-import { formatDate } from "@/presentation/utils";
 
 import * as S from "./styles";
 
