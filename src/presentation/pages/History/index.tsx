@@ -15,9 +15,9 @@ const INITIAL_DETAILS = {
 };
 
 export function History({ loadHistory }: History.Props) {
-  const { data, isLoading } = useQuery("history", () => loadHistory.execute(), {
-    initialData: [],
-  });
+  const { isLoading, data = [] } = useQuery("history", () =>
+    loadHistory.execute()
+  );
 
   const [details, setDetails] = useState(INITIAL_DETAILS);
   const [display, setDisplay] = useState<CardProps["display"]>("expanded");
