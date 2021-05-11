@@ -10,6 +10,17 @@ export const Backdrop = styled.div`
     left: 0;
     z-index: ${theme.layers.backdrop};
 
+    animation: fade-in 100ms;
     background-color: ${rgba("#000", 0.05)};
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   `}
 `;
