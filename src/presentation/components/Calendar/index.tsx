@@ -53,7 +53,7 @@ export function Calendar({
           </S.Loader>
         </Conditional>
 
-        <Conditional when={!isLoading}>
+        <Conditional when={!!calendars.length || !isLoading}>
           <S.Calendar>
             {calendars.map((calendar, index) => {
               const date = formatDate(calendar.date);
