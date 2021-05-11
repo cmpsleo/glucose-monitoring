@@ -1,3 +1,4 @@
+import { formatDate } from "@/infra/date";
 import { RemoteMeasurement } from "@/application/models";
 import { LoadHistory } from "@/domain/usecases";
 import { HttpClient } from "@/application/protocols/http";
@@ -23,9 +24,8 @@ export class RemoteLoadHistory implements LoadHistory {
     const transform: {
       [key: string]: RemoteMeasurement[];
     } = data.reduce((prev, current) => {
-      const [measuredAt] = new Date(current.measuredAt)
-        .toISOString()
-        .split("T");
+      const measuredAt = formatDate(current.measuredAt).format("YYYY-MM-DD");
+
       return {
         ...prev,
         [measuredAt]: [...(prev?.[measuredAt] || []), current],
