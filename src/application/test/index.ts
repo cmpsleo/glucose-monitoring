@@ -1,2 +1,2 @@
-export * from "./mockHttpClient";
+export * from "./mockHttp";
 export * from "./mockRemoteMeasurement";
