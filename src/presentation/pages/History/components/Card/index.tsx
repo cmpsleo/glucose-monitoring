@@ -26,9 +26,9 @@ function Card({
       </Conditional>
 
       <S.Item>
-        {date.current.format("HH:mm")}
+        {date.current.format("LT")}
         <Conditional when={display === "expanded"}>
-          <span>({date.current.format("DD/MM")})</span>
+          <span>({date.current.format("L")})</span>
         </Conditional>
       </S.Item>
 

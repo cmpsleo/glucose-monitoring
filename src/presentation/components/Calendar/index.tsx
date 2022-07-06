@@ -11,9 +11,9 @@ const displays = ["horizontal", "vertical"] as const;
 export function Calendar({
   calendars,
   currentDisplay,
-  title = "Calendário",
+  title = "Calendar",
   isLoading = false,
-  loaderText = "Aguarde, carregando...",
+  loaderText = "Loading...",
 }: Calendar.Props) {
   const [display, setDisplay] = useState<Calendar.Display>("horizontal");
 

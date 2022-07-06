@@ -26,9 +26,7 @@ function Details({ onClose, measurement }: DetailsProps) {
         <S.Content ref={contentRef}>
           <S.Head>
             <S.Title>
-              {formatDate(measurement.measuredAt).format(
-                "DD [de] MMMM [de] YYYY [às] HH:mm"
-              )}
+              {formatDate(measurement.measuredAt).format("L LTS")}
             </S.Title>
 
             <S.Close onClick={onClose}>
@@ -38,27 +36,27 @@ function Details({ onClose, measurement }: DetailsProps) {
 
           <S.Body>
             <S.Item>
-              <span>Notas:</span>
+              <span>Notes:</span>
               <span>{measurement.notes || "-"}</span>
             </S.Item>
 
             <S.Item>
-              <span>Contexto:</span>
+              <span>Context:</span>
               <span>{MealContexts[measurement.mealContext]}</span>
             </S.Item>
 
             <S.Item>
-              <span>Aparelho:</span>
+              <span>Glucometer:</span>
               <span>{measurement.glucometer.name || "-"}</span>
             </S.Item>
 
             <S.Item>
-              <span>Fabricante:</span>
+              <span>Manufacturer:</span>
               <span>{measurement.glucometer.manufacturer || "-"}</span>
             </S.Item>
 
             <S.Item>
-              <span>Método:</span>
+              <span>Method:</span>
               <span>{measurement.measurementMethod || "-"}</span>
             </S.Item>
           </S.Body>

@@ -1,6 +1,5 @@
 {
-  "name": "klv-member-calendar",
-  "private": true,
+  "name": "glucose-monitoring",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,90 +1,84 @@
-# Klv Frontend Challenge
+# Glucose Monitoring
 
-Aplicação de exibição de histórico de medições dos membros.
+A basic calendar application for monitoring patients' glucose measurements.
 
-## Instalação
+## Installation
 
 Clone the project
 
 ```bash
-  git clone git@github.com:cmpsleo/klv-member-calendar.git
+  git clone git@github.com:cmpsleo/glucose-monitoring.git
 ```
 
-Vá para o diretório do projeto
+Go to the directory
 
 ```bash
-  cd klv-member-calendar
+  cd glucose-monitoring
 ```
 
-Instale as dependências
+Install dependencies
 
 ```bash
   yarn install
 ```
 
-Crie o arquivo `.env.local` na raiz do projeto e adicione os valores para:
+Create a file `.env.local` at the root of the project and add this:
 
 ```
   API_BASE_URL=
 ```
 
-Inicie o server
+Start server
 
 ```bash
   yarn dev
 ```
 
-## Variáveis de ambiente
+## Structure
 
-Para rodar este projeto, você irá precisar adicionar a seguinte variável no seu arquivo .env
-
-`API_BASE_URL`
-
-## Estrutura
-
-É utilizado Clean Architecture para a estrutura da aplicação, segue abaixo a explicação dos diretórios:
+This project is for a study case implementing a clean architecture approach, see below the directories explanation:
 
 ```
 ├── ...
 ├── src
-│ ├── domain             👑 - Principal camada responsável dos casos de uso e entities
-│ ├── application        🤝 - Implementa as classes definidas na Domain layer
-│ ├── infra              🏗️ - Realiza a comunicação com serviços externos
-│ ├── main               📌 - Factories de todas as instâncias das classes
-│ ├── pages              🥂 - Composite das telas
-│ └── presentation       🧩 - Toda a UI da aplicação sem lógica de domínio apenas da própria UI.
+│ ├── domain             👑 - Main layer responsible for use cases and entities
+│ ├── application        🤝 - Implement classes following domain layer
+│ ├── infra              🏗️ - Create the communication to external services
+│ ├── main               📌 - Factory layer to all class instances
+│ ├── pages              🥂 - Screen composition
+│ └── presentation       🧩 - UI only without any type of logic
 ├── ...
 ```
 
 ## Storybook
 
-Para testes e desenvolvimento é utilizado o Storybook, para rodar execute o seguinte comando:
+For tests and development is used Storybook. Run with:
 
 ```bash
   yarn storybook
 ```
 
-## Testes
+## Tests
 
-Foram criados testes apenas para as camadas de Application e Infra. Para rodar, execute o seguinte comando:
+Tests is only for `Application` and `Infra` layer. Run with:
 
 ```bash
   yarn test
 ```
 
-## Deploy
+## Deployment
 
-Através de `pull requests` é rodado uma pipeline de code check e testes e os deploys estão configurados ao mergear as alterações na branch `main`.
+The main entry for a new feature is with `pull requests` that run an action with code checks e tests and will deploy automatically after PR approbation and merge to main.
 
-## Demonstração
+## Demo
 
-[Clique aqui](https://klv-member-calendar.vercel.app)
+[Click here](https://glucose-monitoring.vercel.app)
 
-## Ferramentas
+## Tools
 
 **Client:** React, Nextjs, Styled Components, Styled Media Query, Polished, Jest, Typescript, Axios, React Query, Storybook, Dayjs, Husky, Lint Staged, ReactInk, Faker, Eslint, Conventional Commit.
 
-## Referências
+## References
 
 - [React com Mango](https://www.udemy.com/course/react-com-mango)
 - [Implementando Clean Architecture no ReactJS](https://joaogbsczip.medium.com/implementando-clean-architecture-no-reactjs-af17fb70ca6)

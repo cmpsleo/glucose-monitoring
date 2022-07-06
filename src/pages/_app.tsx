@@ -10,9 +10,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <Head>
-          <title>Klv Member Calendar</title>
+          <title>Glucose Monitoring</title>
 
-          <meta name="description" content="Klv Frontend Test" />
+          <meta
+            name="description"
+            content="Blood glucose monitoring is the use of a glucose meter for testing the concentration of glucose in the blood (glycemia)."
+          />
         </Head>
 
         <Component {...pageProps} />
