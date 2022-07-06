@@ -67,7 +67,7 @@ export function History({ loadHistory }: History.Props) {
           isLoading={isLoading}
           calendars={makeCalendar}
           currentDisplay={handleDisplay}
-          loaderText="Aguarde, estamos buscando o histórico de medição."
+          loaderText="Wait, we are loading the measurements history."
         />
       </S.Content>
 

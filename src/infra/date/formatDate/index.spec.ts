@@ -8,7 +8,7 @@ describe("formatDate considering that default locale and UTC", () => {
 
   it("Should return full month name correctly", () => {
     const date = formatDate("2021-03-28T06:37:32.018Z").format("MMMM");
-    expect(date).toBe("Março");
+    expect(date).toBe("March");
   });
 
   it("Should return hour and minute formated", () => {

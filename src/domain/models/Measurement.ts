@@ -5,14 +5,14 @@ export interface Measurement {
 
 export enum Conditions {
   Normal = "Normal",
-  Hyperglycemia = "Hiperglicemia",
-  Hypoglycemia = "Hipoglicemia",
+  Hyperglycemia = "Hyperglycemia",
+  Hypoglycemia = "Hypoglycemia",
 }
 
 export enum MealContexts {
-  Fasting = "Em jejum",
-  Before = "Antes da refeição",
-  After = "Depois da refeição",
+  Fasting = "Fasting",
+  Before = "Before",
+  After = "After",
 }
 
 export namespace Measurement {
